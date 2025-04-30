@@ -3,7 +3,7 @@
       <!-- Logo y nombre de la aplicación -->
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="{{ asset('images/casa.png') }}" class="h-16" alt="Logo de la aplicación">
-          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">Aplicación Home</span>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">INGLES.sancarloscomercio.com</span>
       </a>
 
       <!-- Botón de "Mi cuenta" y menú móvil -->
@@ -32,10 +32,16 @@
                   </a>
               </li>
               <li>
-                  <a href="{{ route('posts.index') }}" class="block py-2 px-3 text-white hover:bg-gray-700 rounded-sm md:hover:bg-transparent md:hover:text-teal-400 md:p-0 transition duration-300 ease-in-out">
-                      Blog
+                  <a href="{{ route('welcome') }}" class="block py-2 px-3 text-white hover:bg-gray-700 rounded-sm md:hover:bg-transparent md:hover:text-teal-400 md:p-0 transition duration-300 ease-in-out">
+                      imagenes
                   </a>
               </li>
+                 <li>
+                  <a href="{{ route('welcome') }}" class="block py-2 px-3 text-white hover:bg-gray-700 rounded-sm md:hover:bg-transparent md:hover:text-teal-400 md:p-0 transition duration-300 ease-in-out">
+                      videos
+                  </a>
+              </li>
+           
               <li>
                   <a href="{{ route('nosotros') }}" class="block py-2 px-3 text-white hover:bg-gray-700 rounded-sm md:hover:bg-transparent md:hover:text-teal-400 md:p-0 transition duration-300 ease-in-out">
                       Nosotros

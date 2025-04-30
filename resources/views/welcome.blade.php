@@ -8,8 +8,5 @@
 
 
 
-<x-slot:sidebar>
-home sidebar
-</x-slot:sidebar>
 
 </x-layout>
