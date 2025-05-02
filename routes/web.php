@@ -50,8 +50,6 @@ Route::get('/blog/{post}/edit', [PostController::class, 'edit'])->name('posts.ed
 
 Route::patch('/blog/{post}', [PostController::class, 'update'])->name('posts.update');
 
-
-
 Route::view('nosotros', 'nosotros')->name('nosotros');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
