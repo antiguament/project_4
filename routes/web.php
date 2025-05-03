@@ -51,5 +51,23 @@ Route::get('/blog/{post}/edit', [PostController::class, 'edit'])->name('posts.ed
 Route::patch('/blog/{post}', [PostController::class, 'update'])->name('posts.update');
 
 Route::view('nosotros', 'nosotros')->name('nosotros');
+Route::view('leccion-a1', 'leccion-a1')->name('leccion-a1');
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/load-component/{topic}', function ($topic) {
+    switch ($topic) {
+        case 'a1-1':
+            return view('components.secction-a1.a1-1a');
+        case 'a1-2':
+            return view('components.secction-a1.a1-2');
+        case 'a1-3':
+                return view('components.secction-a1.a1-3');
+        // Agrega más casos para cada tema
+        default:
+            return response('Component not found', 404);
+    }
+});

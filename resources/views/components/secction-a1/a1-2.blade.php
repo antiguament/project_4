@@ -167,163 +167,27 @@
     <div class="absolute bottom-0 right-0 w-48 h-48 bg-[#e65100] rounded-full opacity-10 translate-x-24 translate-y-24 animate-pulse" style="animation-delay: 0.3s"></div>
     <div class="absolute top-1/4 right-10 w-16 h-16 bg-white rounded-full opacity-20 animate-float"></div>
     <div class="absolute bottom-1/3 left-20 w-24 h-24 bg-[#ef6c00] rounded-full opacity-15 animate-float" style="animation-delay: 0.4s"></div>
+
+
+    {{-- Enlace al archivo CSS específico del componente --}}
+    <link rel="stylesheet" href="{{ asset('css/components/secction-a1/a1-2.css') }}">
+
+    {{-- Enlace al archivo JavaScript específico del componente (si es necesario) --}}
+    <script src="{{ asset('js/components/secction-a1/a1-2.js') }}"></script>
+
+
+
 </section>
 
-<style>
-    /* Animaciones mejoradas */
-    @keyframes float {
-        0%, 100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(2deg); }
-    }
-    
-    @keyframes wave {
-        0% { transform: scaleX(1); }
-        50% { transform: scaleX(1.2); }
-        100% { transform: scaleX(1); }
-    }
-    
-    @keyframes fadeInUp {
-        from { 
-            opacity: 0; 
-            transform: translateY(20px); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
-    }
-    
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.1; }
-        50% { transform: scale(1.05); opacity: 0.2; }
-    }
-    
-    .animate-float {
-        animation: float 5s ease-in-out infinite;
-    }
-    
-    .animate-wave {
-        animation: wave 3s ease-in-out infinite;
-    }
-    
-    .animate-fadeInUp {
-        animation: fadeInUp 0.8s ease-out forwards;
-        opacity: 0;
-    }
-    
-    .animate-pulse {
-        animation: pulse 4s ease-in-out infinite;
-    }
-    
-    /* Estilos para el juego de memoria corregido */
-    .memory-card {
-        background-color: #fff3e0;
-        border: 2px solid #fb8c00;
-        border-radius: 0.5rem;
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 600;
-        color: transparent;
-        text-align: center;
-        padding: 0.5rem;
-        position: relative;
-        transform-style: preserve-3d;
-    }
-    
-    .memory-card::before, .memory-card::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .memory-card::before {
-        background-color: #fff3e0;
-        color: #e65100;
-        content: '?';
-    }
-    
-    .memory-card::after {
-        background-color: #fb8c00;
-        color: white;
-        transform: rotateY(180deg);
-    }
-    
-    .memory-card.flipped {
-        transform: rotateY(180deg);
-    }
-    
-    .memory-card.flipped::after {
-        content: attr(data-content);
-    }
-    
-    .memory-card.matched {
-        background-color: #4caf50;
-        border-color: #2e7d32;
-    }
-    
-    .memory-card.matched::after {
-        background-color: #4caf50;
-    }
-    
-    /* Estilos para el nuevo juego de edad */
-    .age-option {
-        background-color: #fff3e0;
-        border: 2px solid #fb8c00;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-weight: 600;
-        color: #e65100;
-    }
-    
-    .age-option:hover {
-        background-color: #ffe0b2;
-    }
-    
-    .age-option.selected {
-        background-color: #fb8c00;
-        color: white;
-    }
-    
-    .age-option.correct {
-        background-color: #4caf50;
-        color: white;
-        border-color: #2e7d32;
-    }
-    
-    .age-option.incorrect {
-        background-color: #f44336;
-        color: white;
-        border-color: #c62828;
-    }
-    
-    /* Estilos para la pregunta de edad */
-    .age-question {
-        background-color: #ffcc80;
-        border: 2px solid #fb8c00;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        text-align: center;
-        font-weight: 700;
-        color: #e65100;
-        margin-bottom: 1rem;
-    }
-</style>
+<div>
+   <p>Componente de prueba</p>
+   <script>alert('Este script debería ejecutarse');</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+
+   <script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
         // Datos para el juego de memoria
         const numbersMemory = [
             { number: 7, word: "Seven" },
@@ -536,10 +400,13 @@
         initMemoryGame();
         initAgeGame();
     });
-</script>
 
 
 
+   </script>
 
+
+   <script src="/js/mi-script-externo.js"></script>
+</div>
 
 

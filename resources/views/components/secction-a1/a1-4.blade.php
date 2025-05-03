@@ -1,158 +1,439 @@
-<section id="verb-to-be" class="bg-gradient-to-br from-[#f0f4c3] to-[#d4e157] py-16 md:py-24 lg:py-32 relative overflow-hidden">
-    <div class="container mx-auto px-6">
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-[#827717] text-center mb-12 animate-fadeInDown" style="animation-delay: 0.2s;">
-            El Poderoso Verbo "TO BE" (Ser / Estar) 💪
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div class="bg-white rounded-lg shadow-xl p-8 animate-fadeInLeft" style="animation-delay: 0.4s;">
-                <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGVsbG98ZW58MHx8MHx8&auto=format&fit=crop&w=300&q=80" alt="Yo" class="rounded-full w-32 h-32 mx-auto mb-4">
-                <h3 class="text-2xl font-semibold text-[#9e9d24] text-center mb-4">Yo Soy / Yo Estoy</h3>
-                <p class="text-lg text-[#a1887f] text-center">Cuando hablamos de <span class="font-bold text-[#689f38]">nosotros mismos</span>, usamos:</p>
-                <p class="text-4xl font-bold text-[#8bc34a] text-center">I <span class="text-[#689f38]">am</span></p>
-                <ul class="list-none mt-4 text-lg text-[#a1887f]">
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">I am</span> happy. (Yo estoy feliz.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">I am</span> a student. (Yo soy un estudiante.)</li>
-                </ul>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-xl p-8 animate-fadeInRight" style="animation-delay: 0.6s;">
-                <img src="https://images.unsplash.com/photo-1534528741702-a0c5f29975d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHlvdXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=300&q=80" alt="Tú" class="rounded-full w-32 h-32 mx-auto mb-4">
-                <h3 class="text-2xl font-semibold text-[#9e9d24] text-center mb-4">Tú Eres / Tú Estás</h3>
-                <p class="text-lg text-[#a1887f] text-center">Cuando hablamos de <span class="font-bold text-[#689f38]">tú</span>, usamos:</p>
-                <p class="text-4xl font-bold text-[#8bc34a] text-center">You <span class="text-[#689f38]">are</span></p>
-                <ul class="list-none mt-4 text-lg text-[#a1887f]">
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">You are</span> kind. (Tú eres amable.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">You are</span> here. (Tú estás aquí.)</li>
-                </ul>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-xl p-8 animate-fadeInUp" style="animation-delay: 0.8s;">
-                <div class="flex justify-around mb-4">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aGV8ZW58MHx8MHx8&auto=format&fit=crop&w=200&q=80" alt="Él" class="rounded-full w-24 h-24">
-                    <img src="https://images.unsplash.com/photo-1580489945341-07c7cf5976ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8c2hlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Ella" class="rounded-full w-24 h-24">
-                    <img src="https://images.unsplash.com/photo-1518791841217-61945c0c5dfa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=200&q=80" alt="Eso" class="rounded-full w-24 h-24">
-                </div>
-                <h3 class="text-2xl font-semibold text-[#9e9d24] text-center mb-4">Él/Ella/Eso Es / Está</h3>
-                <p class="text-lg text-[#a1887f] text-center">Para hablar de <span class="font-bold text-[#689f38]">él, ella o eso</span>, usamos:</p>
-                <p class="text-4xl font-bold text-[#8bc34a] text-center">He/She/It <span class="text-[#689f38]">is</span></p>
-                <ul class="list-none mt-4 text-lg text-[#a1887f]">
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">He is</span> tall. (Él es alto.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">She is</span> a teacher. (Ella es una profesora.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">It is</span> sunny. (Está soleado.)</li>
-                </ul>
-            </div>
-
-            <div class="bg-white rounded-lg shadow-xl p-8 animate-fadeInUp" style="animation-delay: 1.0s;">
-                <div class="flex justify-around mb-4">
-                    <img src="https://images.unsplash.com/photo-1544717302-fa9a9d5b9517?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2UlMjBwZW9wbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=200&q=80" alt="Nosotros" class="rounded-full w-24 h-24">
-                    <img src="https://images.unsplash.com/photo-1534528741702-a0c5f29975d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHlvdXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=200&q=80" alt="Ustedes" class="rounded-full w-24 h-24">
-                    <img src="https://images.unsplash.com/photo-1520878487228-11393f8249f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dGhleXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=200&q=80" alt="Ellos" class="rounded-full w-24 h-24">
-                </div>
-                <h3 class="text-2xl font-semibold text-[#9e9d24] text-center mb-4">Nosotros/Ustedes/Ellos Son / Están</h3>
-                <p class="text-lg text-[#a1887f] text-center">Para hablar de <span class="font-bold text-[#689f38]">nosotros, ustedes o ellos</span>, usamos:</p>
-                <p class="text-4xl font-bold text-[#8bc34a] text-center">We/You/They <span class="text-[#689f38]">are</span></p>
-                <ul class="list-none mt-4 text-lg text-[#a1887f]">
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">We are</span> friends. (Nosotros somos amigos.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">You are</span> late. (Ustedes están tarde.)</li>
-                    <li class="mb-2"><span class="font-bold text-[#689f38]">They are</span> from Spain. (Ellos son de España.)</li>
-                </ul>
-            </div>
+<section id="to-be-game" class="to-be-game-section">
+    <div class="container">
+        <h2 class="game-title">Juego del Verbo "To Be"</h2>
+        
+        <div class="game-intro">
+            <p>Completa cada oración con la forma correcta del verbo <strong>to be</strong> (am, is, are).</p>
         </div>
-
-        <div class="mt-16 bg-white rounded-lg shadow-md p-8 animate-fadeInUp" style="animation-delay: 1.2s;">
-            <h2 class="text-3xl font-semibold text-[#827717] mb-6 text-center">¡Recuerda!</h2>
-            <p class="text-lg text-[#a1887f] text-center">El verbo "to be" es muy importante. ¡Practica usarlo con diferentes sujetos y descripciones!</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-to-be"></div>
+        </div>
+        
+        <div class="score-board">
+            <div>Pregunta: <span id="question-count-to-be">1</span>/10</div>
+            <div>Puntaje: <span id="score-to-be">0</span></div>
+        </div>
+        
+        <div class="game-area">
+            <div class="sentence" id="sentence-to-be"></div>
+            
+            <div class="feedback" id="feedback-to-be"></div>
+            
+            <div class="options" id="options-to-be"></div>
+            
+            <button class="next-btn" id="next-btn-to-be">Siguiente</button>
+        </div>
+        
+        <div class="game-over" id="game-over-to-be">
+            <h3>¡Juego Terminado!</h3>
+            <p>Tu puntaje final: <span id="final-score-to-be">0</span>/10</p>
+            <button class="restart-btn" id="restart-btn-to-be">Jugar de nuevo</button>
         </div>
     </div>
 
-    <div class="absolute top-0 left-0 w-40 h-40 bg-[#8bc34a] rounded-full opacity-10 -translate-x-20 -translate-y-20"></div>
-    <div class="absolute bottom-0 right-0 w-60 h-60 bg-[#9e9d24] rounded-full opacity-10 translate-x-32 translate-y-32"></div>
-</section>
-
-<style>
-    /* Estilos para las animaciones */
-    @keyframes fadeInDown {
-        from {
+    <style>
+        .to-be-game-section {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffd6d6 100%);
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .to-be-game-section .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .to-be-game-section .game-title {
+            color: #d23669;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .to-be-game-section .game-intro {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .to-be-game-section .game-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .to-be-game-section .sentence {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #fff9f9;
+            border-radius: 10px;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            border: 1px solid #ffebee;
+        }
+        
+        .to-be-game-section .blank {
+            display: inline-block;
+            width: 60px;
+            height: 40px;
+            border-bottom: 2px solid #d23669;
+            margin: 0 5px;
+            position: relative;
+        }
+        
+        .to-be-game-section .options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .to-be-game-section .option {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .to-be-game-section .option:hover {
+            background-color: #d23669;
+            transform: translateY(-2px);
+        }
+        
+        .to-be-game-section .score-board {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .to-be-game-section .feedback {
+            min-height: 50px;
+            font-size: 1rem;
+            margin: 1rem 0;
+            font-weight: bold;
+            padding: 0.5rem;
+            border-radius: 5px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
-            transform: translateY(-20px);
+            transition: opacity 0.3s ease;
+            background-color: #fff5f5;
         }
-        to {
+        
+        .to-be-game-section .feedback.show {
             opacity: 1;
-            transform: translateY(0);
         }
-    }
-
-    @keyframes fadeInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
+        
+        .to-be-game-section .correct {
+            color: #28a745;
+            border: 1px solid #28a745;
         }
-        to {
-            opacity: 1;
-            transform: translateX(0);
+        
+        .to-be-game-section .incorrect {
+            color: #dc3545;
+            border: 1px solid #dc3545;
         }
-    }
-
-    @keyframes fadeInRight {
-        from {
-            opacity: 0;
-            transform: translateX(20px);
+        
+        .to-be-game-section .next-btn {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: none;
         }
-        to {
-            opacity: 1;
-            transform: translateX(0);
+        
+        .to-be-game-section .next-btn:hover {
+            background-color: #d23669;
+            transform: translateY(-2px);
         }
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+        
+        .to-be-game-section .progress-container {
+            width: 100%;
+            background-color: #ffebee;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            height: 10px;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .to-be-game-section .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #ff6b81;
+            width: 0%;
+            transition: width 0.5s;
         }
-    }
+        
+        .to-be-game-section .game-over {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff9f9;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .to-be-game-section .restart-btn {
+            background-color: #ff9e80;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .to-be-game-section .restart-btn:hover {
+            background-color: #ff7043;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 600px) {
+            .to-be-game-section .container {
+                padding: 1rem;
+            }
+            
+            .to-be-game-section .game-title {
+                font-size: 1.5rem;
+            }
+            
+            .to-be-game-section .sentence {
+                font-size: 1.1rem;
+            }
+            
+            .to-be-game-section .option {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 
-    .animate-fadeInDown {
-        animation: fadeInDown 0.6s ease-out forwards;
-    }
+    <script>
+        // Datos del juego para el verbo to be
+        const questionsToBe = [
+            {
+                sentence: "I ___ a student.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "am"
+            },
+            {
+                sentence: "She ___ my best friend.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "is"
+            },
+            {
+                sentence: "They ___ playing football.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "are"
+            },
+            {
+                sentence: "We ___ very happy today.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "are"
+            },
+            {
+                sentence: "He ___ not at home right now.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "is"
+            },
+            {
+                sentence: "You ___ my favorite person.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "are"
+            },
+            {
+                sentence: "It ___ a beautiful day.",
+                blankIndex: 1,
+                options: ["am", "is", "are"],
+                correct: "is"
+            },
+            {
+                sentence: "The cat ___ sleeping on the sofa.",
+                blankIndex: 2,
+                options: ["am", "is", "are"],
+                correct: "is"
+            },
+            {
+                sentence: "My parents ___ coming to visit us.",
+                blankIndex: 2,
+                options: ["am", "is", "are"],
+                correct: "are"
+            },
+            {
+                sentence: "This book ___ very interesting.",
+                blankIndex: 2,
+                options: ["am", "is", "are"],
+                correct: "is"
+            }
+        ];
 
-    .animate-fadeInLeft {
-        animation: fadeInLeft 0.6s ease-out forwards;
-    }
+        // Variables del juego
+        let currentQuestionToBe = 0;
+        let scoreToBe = 0;
+        let gameActiveToBe = true;
 
-    .animate-fadeInRight {
-        animation: fadeInRight 0.6s ease-out forwards;
-    }
+        // Inicializar el juego cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM específicos para este juego
+            const sentenceElement = document.getElementById('sentence-to-be');
+            const optionsElement = document.getElementById('options-to-be');
+            const feedbackElement = document.getElementById('feedback-to-be');
+            const nextButton = document.getElementById('next-btn-to-be');
+            const questionCountElement = document.getElementById('question-count-to-be');
+            const scoreElement = document.getElementById('score-to-be');
+            const progressBar = document.getElementById('progress-to-be');
+            const gameOverElement = document.getElementById('game-over-to-be');
+            const finalScoreElement = document.getElementById('final-score-to-be');
+            const restartButton = document.getElementById('restart-btn-to-be');
 
-    .animate-fadeInUp {
-        animation: fadeInUp 0.6s ease-out forwards;
-    }
-</style>
+            // Inicializar el juego
+            function initGame() {
+                currentQuestionToBe = 0;
+                scoreToBe = 0;
+                gameActiveToBe = true;
+                scoreElement.textContent = scoreToBe;
+                questionCountElement.textContent = currentQuestionToBe + 1;
+                progressBar.style.width = '0%';
+                gameOverElement.style.display = 'none';
+                document.querySelector('.game-area').style.display = 'flex';
+                loadQuestion();
+            }
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeInDown', 'animate-fadeInLeft', 'animate-fadeInRight', 'animate-fadeInUp');
+            // Cargar pregunta
+            function loadQuestion() {
+                if (currentQuestionToBe >= questionsToBe.length) {
+                    endGame();
+                    return;
                 }
+
+                const question = questionsToBe[currentQuestionToBe];
+                const sentenceParts = question.sentence.split('___');
+                
+                sentenceElement.innerHTML = '';
+                
+                // Construir la oración con el espacio en blanco
+                sentenceParts.forEach((part, index) => {
+                    sentenceElement.appendChild(document.createTextNode(part));
+                    if (index < sentenceParts.length - 1) {
+                        const blankSpan = document.createElement('span');
+                        blankSpan.className = 'blank';
+                        blankSpan.id = 'blank-to-be';
+                        sentenceElement.appendChild(blankSpan);
+                    }
+                });
+
+                // Cargar opciones
+                optionsElement.innerHTML = '';
+                question.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option';
+                    button.textContent = option;
+                    button.addEventListener('click', () => selectOption(option));
+                    optionsElement.appendChild(button);
+                });
+
+                // Resetear feedback y botón siguiente
+                feedbackElement.textContent = '';
+                feedbackElement.className = 'feedback';
+                feedbackElement.classList.remove('show');
+                nextButton.style.display = 'none';
+            }
+
+            // Seleccionar opción
+            function selectOption(selectedOption) {
+                if (!gameActiveToBe) return;
+
+                const question = questionsToBe[currentQuestionToBe];
+                const blank = document.getElementById('blank-to-be');
+                
+                // Mostrar la respuesta seleccionada en el espacio en blanco
+                blank.textContent = selectedOption;
+                
+                // Deshabilitar todos los botones de opción
+                const optionButtons = document.querySelectorAll('.option');
+                optionButtons.forEach(button => {
+                    button.disabled = true;
+                });
+
+                // Verificar respuesta
+                if (selectedOption === question.correct) {
+                    feedbackElement.textContent = '¡Correcto!';
+                    feedbackElement.className = 'feedback correct show';
+                    blank.style.color = '#28a745';
+                    scoreToBe++;
+                    scoreElement.textContent = scoreToBe;
+                } else {
+                    feedbackElement.textContent = `Incorrecto. La respuesta correcta es "${question.correct}".`;
+                    feedbackElement.className = 'feedback incorrect show';
+                    blank.style.color = '#dc3545';
+                }
+
+                // Mostrar botón siguiente
+                nextButton.style.display = 'block';
+                gameActiveToBe = false;
+            }
+
+            // Siguiente pregunta
+            nextButton.addEventListener('click', () => {
+                currentQuestionToBe++;
+                questionCountElement.textContent = currentQuestionToBe + 1;
+                progressBar.style.width = `${(currentQuestionToBe / questionsToBe.length) * 100}%`;
+                gameActiveToBe = true;
+                loadQuestion();
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('#verb-to-be [class*="animate-"]').forEach(el => {
-            observer.observe(el);
+            // Finalizar juego
+            function endGame() {
+                document.querySelector('.game-area').style.display = 'none';
+                gameOverElement.style.display = 'flex';
+                finalScoreElement.textContent = scoreToBe;
+            }
+
+            // Reiniciar juego
+            restartButton.addEventListener('click', initGame);
+
+            // Iniciar el juego
+            initGame();
         });
-    });
-</script>
-
-
-
-
-
+    </script>
+</section>
 
 
 
