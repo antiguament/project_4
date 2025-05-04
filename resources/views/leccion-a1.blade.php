@@ -6,7 +6,7 @@
 
 
 <x-secction-a1.a1-hero/>
-<x-inicio.inicio-2/>
+<x-inicio.inicio-4/>
 
 
 
