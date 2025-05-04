@@ -213,6 +213,14 @@
         <h2 class="eng-section-title">Gramática Básica</h2>
         <div class="eng-section-content">
         <x-secction-a1.a1-5/>
+        <x-secction-a1.a1-5a/>
+        </div>
+    </div>
+
+    <div id="section-family" class="eng-content-section">
+        <h2 class="eng-section-title">Familia/Amigos</h2>
+        <div class="eng-section-content">
+        <x-secction-a1.a1-6/>
         </div>
     </div>
     

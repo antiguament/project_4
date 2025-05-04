@@ -1,350 +1,448 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // =============================================
+    // Juego 1: Ordenar la Frase
+    // =============================================
+    const sentences = [
+        "Hello my name is Carlos",
+        "I am 25 years old",
+        "Nice to meet you",
+        "Hi I'm Ana and I'm 30",
+        "Good morning my name is Mr. Smith"
+    ];
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Datos para el juego de memoria
-        const numbersMemory = [
-            { number: 7, word: "Seven" },
-            { number: 12, word: "Twelve" },
-            { number: 20, word: "Twenty" },
-            { number: 35, word: "Thirty-five" },
-            { number: 8, word: "Eight" },
-            { number: 15, word: "Fifteen" },
-            { number: 50, word: "Fifty" },
-            { number: 100, word: "One hundred" }
-        ];
+    const scrambleArea = document.getElementById('sentence-scramble-area');
+    const optionsArea = document.getElementById('sentence-options');
+    const checkBtn = document.getElementById('check-sentence');
+    const hintBtn = document.getElementById('scramble-hint');
+    const feedbackDiv = document.getElementById('scramble-feedback');
+    const nextBtn = document.getElementById('next-sentence');
+    
+    let currentSentence = '';
+    let scrambledWords = [];
+    let placedWords = [];
+    
+    function initSentenceGame() {
+        // Elegir una frase aleatoria
+        currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
+        const words = currentSentence.split(' ');
         
-        // Variables para el juego de memoria
-        let memoryCards = [];
-        let flippedCards = [];
-        let matches = 0;
+        // Mezclar palabras
+        scrambledWords = [...words].sort(() => Math.random() - 0.5);
+        placedWords = [];
         
-        // Inicializar el juego de memoria corregido
-        function initMemoryGame() {
-            const gameContainer = document.getElementById('number-memory-game');
-            gameContainer.innerHTML = '';
-            flippedCards = [];
-            matches = 0;
-            document.getElementById('memory-score').textContent = 'Matches: 0/8';
+        // Limpiar áreas
+        scrambleArea.innerHTML = '<p class="text-[#0288d1] text-center">Arrastra las palabras aquí</p>';
+        optionsArea.innerHTML = '';
+        feedbackDiv.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        
+        // Mostrar palabras mezcladas
+        scrambledWords.forEach((word, index) => {
+            const wordElement = document.createElement('div');
+            wordElement.className = 'scramble-word';
+            wordElement.textContent = word;
+            wordElement.draggable = true;
+            wordElement.dataset.index = index;
             
-            // Duplicar y mezclar las tarjetas
-            memoryCards = [];
-            numbersMemory.forEach(item => {
-                memoryCards.push({ type: 'number', content: item.number, pair: item.word });
-                memoryCards.push({ type: 'word', content: item.word, pair: item.number });
+            wordElement.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', index);
             });
             
-            // Mezclar las tarjetas
-            memoryCards.sort(() => Math.random() - 0.5);
-            
-            // Crear las tarjetas en el DOM
-            memoryCards.forEach((card, index) => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'memory-card';
-                cardElement.dataset.index = index;
-                cardElement.dataset.content = card.content;
-                cardElement.dataset.pair = card.pair;
-                
-                cardElement.addEventListener('click', flipCard);
-                gameContainer.appendChild(cardElement);
-            });
-        }
-        
-        // Voltear una tarjeta (versión corregida)
-        function flipCard(event) {
-            const card = event.currentTarget;
-            
-            // No hacer nada si la tarjeta ya está volteada o emparejada
-            if (card.classList.contains('flipped') || flippedCards.length >= 2) {
-                return;
-            }
-            
-            // Voltear la tarjeta
-            card.classList.add('flipped');
-            flippedCards.push(card);
-            
-            // Comprobar si hay dos tarjetas volteadas
-            if (flippedCards.length === 2) {
-                const [firstCard, secondCard] = flippedCards;
-                
-                // Comprobar si son pareja
-                if (firstCard.dataset.content === secondCard.dataset.pair || 
-                    firstCard.dataset.pair === secondCard.dataset.content) {
-                    // Pareja correcta
-                    firstCard.classList.add('matched');
-                    secondCard.classList.add('matched');
-                    matches++;
-                    document.getElementById('memory-score').textContent = `Matches: ${matches}/8`;
-                    flippedCards = [];
-                    
-                    // Comprobar si se ha completado el juego
-                    if (matches === 8) {
-                        setTimeout(() => {
-                            alert('🎉 Congratulations! You matched all numbers!');
-                        }, 500);
-                    }
-                } else {
-                    // Pareja incorrecta - voltear de nuevo después de un breve retraso
-                    setTimeout(() => {
-                        firstCard.classList.remove('flipped');
-                        secondCard.classList.remove('flipped');
-                        flippedCards = [];
-                    }, 1000);
-                }
-            }
-        }
-        
-        // Variables para el nuevo juego de edad
-        let currentAge = 0;
-        let correctAnswers = 0;
-        let incorrectAnswers = 0;
-        
-        // Datos para el juego de edad
-        const ageQuestions = [
-            { age: 5, correct: "I am five years old.", incorrects: ["I have five years.", "I am five year old.", "Five years I have."] },
-            { age: 12, correct: "I am twelve years old.", incorrects: ["I have twelve years old.", "I am twelve year old.", "Twelve years I am."] },
-            { age: 20, correct: "I am twenty years old.", incorrects: ["I have twenty years.", "I am twenty year old.", "Twenty years I have."] },
-            { age: 35, correct: "I am thirty-five years old.", incorrects: ["I have thirty-five years.", "I am thirty five years old.", "Thirty-five years I am."] },
-            { age: 50, correct: "I am fifty years old.", incorrects: ["I have fifty years.", "I am fifty year old.", "Fifty years I have."] }
-        ];
-        
-        // Inicializar el juego de edad
-        function initAgeGame() {
-            document.getElementById('age-feedback').textContent = '';
-            document.getElementById('next-age').classList.add('hidden');
-            updateAgeCounter();
-            generateAgeQuestion();
-        }
-        
-        // Generar nueva pregunta de edad
-        function generateAgeQuestion() {
-            const questionContainer = document.getElementById('age-question-container');
-            const optionsContainer = document.getElementById('age-options');
-            
-            questionContainer.innerHTML = '';
-            optionsContainer.innerHTML = '';
-            
-            // Seleccionar una pregunta aleatoria
-            const randomQuestion = ageQuestions[Math.floor(Math.random() * ageQuestions.length)];
-            currentAge = randomQuestion.age;
-            
-            // Mostrar la pregunta
-            const questionElement = document.createElement('div');
-            questionElement.className = 'age-question';
-            questionElement.textContent = `How would you say you are ${currentAge} years old in English?`;
-            questionContainer.appendChild(questionElement);
-            
-            // Generar opciones (1 correcta y 3 incorrectas)
-            const options = [randomQuestion.correct, ...randomQuestion.incorrects];
-            
-            // Mezclar las opciones
-            options.sort(() => Math.random() - 0.5);
-            
-            // Crear los botones de opción
-            options.forEach(option => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'age-option';
-                optionElement.textContent = option;
-                
-                optionElement.addEventListener('click', function() {
-                    checkAgeAnswer(option, randomQuestion.correct);
-                });
-                
-                optionsContainer.appendChild(optionElement);
-            });
-        }
-        
-        // Verificar la respuesta en el juego de edad
-        function checkAgeAnswer(selectedOption, correctAnswer) {
-            const options = document.querySelectorAll('.age-option');
-            const feedback = document.getElementById('age-feedback');
-            const nextButton = document.getElementById('next-age');
-            
-            options.forEach(option => {
-                option.classList.remove('selected', 'correct', 'incorrect');
-                
-                if (option.textContent === correctAnswer) {
-                    option.classList.add('correct');
-                } else if (option.textContent === selectedOption && selectedOption !== correctAnswer) {
-                    option.classList.add('incorrect');
-                }
-                
-                // Deshabilitar clics adicionales
-                option.style.pointerEvents = 'none';
-            });
-            
-            if (selectedOption === correctAnswer) {
-                feedback.textContent = '✅ Correct! Well done!';
-                feedback.style.color = '#4caf50';
-                correctAnswers++;
-            } else {
-                feedback.textContent = `❌ Incorrect! The correct answer is: "${correctAnswer}"`;
-                feedback.style.color = '#f44336';
-                incorrectAnswers++;
-            }
-            
-            updateAgeCounter();
-            nextButton.classList.remove('hidden');
-        }
-        
-        // Actualizar el contador de aciertos/errores
-        function updateAgeCounter() {
-            document.getElementById('age-counter').textContent = 
-                `Correct: ${correctAnswers} | Incorrect: ${incorrectAnswers}`;
-        }
-        
-        // Configurar el botón "Next Question"
-        document.getElementById('next-age').addEventListener('click', generateAgeQuestion);
-        
-        // Botón para reiniciar el juego de memoria
-        document.getElementById('reset-memory').addEventListener('click', initMemoryGame);
-        
-        // Generar una edad aleatoria para practicar
-        document.getElementById('random-age').addEventListener('click', function() {
-            const randomAge = Math.floor(Math.random() * 100) + 1;
-            const ageDisplay = document.getElementById('age-display');
-            const ageAnswer = document.getElementById('age-answer');
-            
-            ageDisplay.textContent = randomAge;
-            ageAnswer.textContent = `"I am ${randomAge} years old."`;
-            ageAnswer.classList.remove('hidden');
+            optionsArea.appendChild(wordElement);
         });
         
-        // Inicializar los juegos
-        initMemoryGame();
-        initAgeGame();
+        // Configurar zona de arrastre
+        scrambleArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            scrambleArea.style.backgroundColor = '#b3e5fc';
+        });
+        
+        scrambleArea.addEventListener('dragleave', () => {
+            scrambleArea.style.backgroundColor = '#e1f5fe';
+        });
+        
+        scrambleArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            scrambleArea.style.backgroundColor = '#e1f5fe';
+            
+            const wordIndex = e.dataTransfer.getData('text/plain');
+            const wordElement = optionsArea.querySelector(`[data-index="${wordIndex}"]`);
+            
+            if (wordElement && !placedWords.includes(parseInt(wordIndex))) {
+                placedWords.push(parseInt(wordIndex));
+                
+                const placedWord = wordElement.cloneNode(true);
+                placedWord.classList.add('placed');
+                placedWord.draggable = false;
+                
+                if (scrambleArea.firstChild?.tagName === 'P') {
+                    scrambleArea.innerHTML = '';
+                }
+                
+                scrambleArea.appendChild(placedWord);
+                wordElement.style.visibility = 'hidden';
+            }
+        });
+    }
+    
+    checkBtn.addEventListener('click', () => {
+        const userSentence = Array.from(scrambleArea.children)
+            .map(el => el.textContent)
+            .join(' ');
+        
+        if (userSentence === currentSentence) {
+            feedbackDiv.innerHTML = '<p class="text-[#2e7d32] font-medium">¡Correcto! Perfecta pronunciación.</p>';
+            nextBtn.classList.remove('hidden');
+        } else {
+            feedbackDiv.innerHTML = '<p class="text-[#c62828] font-medium">Casi lo tienes. Intenta de nuevo.</p>';
+        }
+        
+        feedbackDiv.classList.remove('hidden');
     });
-
-
-
-
-
-// numbers-age.js - Código del juego separado
-
-document.addEventListener('DOMContentLoaded', function() {
-    // [Todo el código del juego que tenías antes]
-    console.log("Numbers & Age component loaded!");
+    
+    hintBtn.addEventListener('click', () => {
+        const missingWords = currentSentence.split(' ').filter((word, index) => {
+            return !placedWords.includes(scrambledWords.indexOf(word));
+        });
+        
+        if (missingWords.length > 0) {
+            alert(`Pista: La siguiente palabra es "${missingWords[0]}"`);
+        }
+    });
+    
+    nextBtn.addEventListener('click', initSentenceGame);
+    
+    // =============================================
+    // Juego 2: Elige la Respuesta Correcta
+    // =============================================
+    const quizQuestions = [
+        {
+            question: "¿Cómo respondes cuando alguien dice 'Nice to meet you'?",
+            options: [
+                "Nice to meet you too",
+                "I'm fine",
+                "Goodbye",
+                "My name is Ana"
+            ],
+            correct: 0
+        },
+        {
+            question: "¿Cómo dices 'Tengo 25 años' en inglés?",
+            options: [
+                "I have 25 years",
+                "I am 25 years old",
+                "I'm 25 years",
+                "I old 25 years"
+            ],
+            correct: 1
+        },
+        {
+            question: "¿Cómo empiezas una presentación formal?",
+            options: [
+                "Hey!",
+                "Hello, my name is...",
+                "What's up?",
+                "I'm hungry"
+            ],
+            correct: 1
+        },
+        {
+            question: "Si alguien dice 'Hi! I'm John', ¿qué responderías?",
+            options: [
+                "Goodbye John",
+                "Nice to meet you John, I'm...",
+                "I'm 20 years old",
+                "Thank you"
+            ],
+            correct: 1
+        },
+        {
+            question: "¿Cómo preguntas la edad de alguien?",
+            options: [
+                "How old you are?",
+                "What's your age?",
+                "How old are you?",
+                "You have years?"
+            ],
+            correct: 2
+        }
+    ];
+    
+    const quizContainer = document.getElementById('question-container');
+    const optionsContainer = document.getElementById('quiz-options');
+    const quizFeedback = document.getElementById('quiz-feedback');
+    const quizNextBtn = document.getElementById('next-question');
+    const quizCounter = document.getElementById('quiz-counter');
+    
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOption = null;
+    
+    function loadQuestion(index) {
+        const question = quizQuestions[index];
+        document.getElementById('quiz-question').textContent = question.question;
+        optionsContainer.innerHTML = '';
+        
+        question.options.forEach((option, i) => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'quiz-option';
+            optionElement.textContent = option;
+            optionElement.dataset.index = i;
+            
+            optionElement.addEventListener('click', () => {
+                if (!selectedOption) {
+                    selectedOption = i;
+                    
+                    // Estilo para opción seleccionada
+                    document.querySelectorAll('.quiz-option').forEach(el => {
+                        el.classList.remove('selected');
+                    });
+                    optionElement.classList.add('selected');
+                    
+                    // Comprobar respuesta
+                    if (i === question.correct) {
+                        optionElement.classList.add('correct');
+                        score++;
+                        quizFeedback.innerHTML = '<span class="text-[#2e7d32]">✓ Correct! Well done!</span>';
+                    } else {
+                        optionElement.classList.add('incorrect');
+                        optionsContainer.children[question.correct].classList.add('correct');
+                        quizFeedback.innerHTML = '<span class="text-[#c62828]">✗ Incorrect. The right answer is: "' + question.options[question.correct] + '"</span>';
+                    }
+                    
+                    quizFeedback.classList.remove('hidden');
+                    quizNextBtn.classList.remove('hidden');
+                }
+            });
+            
+            optionsContainer.appendChild(optionElement);
+        });
+        
+        quizCounter.textContent = `Question ${index + 1}/${quizQuestions.length}`;
+        quizFeedback.classList.add('hidden');
+        quizNextBtn.classList.add('hidden');
+        selectedOption = null;
+    }
+    
+    quizNextBtn.addEventListener('click', () => {
+        currentQuestion++;
+        
+        if (currentQuestion < quizQuestions.length) {
+            loadQuestion(currentQuestion);
+        } else {
+            // Mostrar resultados finales
+            quizContainer.innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-[#01579b] mb-2">Quiz Complete!</h3>
+                    <p class="text-[#0277bd]">Your score: ${score}/${quizQuestions.length}</p>
+                    <p class="text-[#039be5] mt-2">${score >= quizQuestions.length * 0.8 ? 'Excellent!' : score >= quizQuestions.length * 0.5 ? 'Good job!' : 'Keep practicing!'}</p>
+                </div>
+            `;
+            optionsContainer.innerHTML = '';
+            quizNextBtn.classList.add('hidden');
+            
+            // Botón para reiniciar
+            const restartBtn = document.createElement('button');
+            restartBtn.className = 'bg-[#0288d1] hover:bg-[#01579b] text-white font-medium py-2 px-4 rounded-lg transition-all mt-4';
+            restartBtn.textContent = 'Try Again';
+            restartBtn.addEventListener('click', () => {
+                currentQuestion = 0;
+                score = 0;
+                loadQuestion(0);
+            });
+            
+            optionsContainer.appendChild(restartBtn);
+        }
+    });
+    
+    // =============================================
+    // Nueva Sección: 💬 Practice Dialogues
+    // =============================================
+    const dialogues = {
+        meeting: {
+            title: "Meeting someone new",
+            lines: [
+                { speaker: "Person A", message: "Hello! What's your name?" },
+                { speaker: "You", response: "My name is [your name]", hints: ["I'm [name]", "Hi, I'm [name]"] },
+                { speaker: "Person A", message: "Nice to meet you! How old are you?" },
+                { speaker: "You", response: "I am [number] years old", hints: ["I'm [number]", "[number] years old"] }
+            ]
+        },
+        classroom: {
+            title: "Classroom introduction",
+            lines: [
+                { speaker: "Teacher", message: "Good morning class! Let's introduce ourselves." },
+                { speaker: "Teacher", message: "What's your name?" },
+                { speaker: "You", response: "My name is [your name]", hints: ["I'm [name]", "Hi, I'm [name]"] },
+                { speaker: "Teacher", message: "Nice to have you in class!" }
+            ]
+        },
+        party: {
+            title: "Party conversation",
+            lines: [
+                { speaker: "Person A", message: "Hi! I don't think we've met. I'm Sarah." },
+                { speaker: "You", response: "Nice to meet you Sarah", hints: ["Hi Sarah", "Hello Sarah"] },
+                { speaker: "Person A", message: "What's your name?" },
+                { speaker: "You", response: "I'm [your name]", hints: ["My name is [name]", "Call me [name]"] }
+            ]
+        },
+        work: {
+            title: "Work introduction",
+            lines: [
+                { speaker: "Colleague", message: "Good morning. Are you new here?" },
+                { speaker: "You", response: "Yes, I am", hints: ["Yes, it's my first day", "That's right"] },
+                { speaker: "Colleague", message: "What's your name?" },
+                { speaker: "You", response: "My name is [your name]", hints: ["I'm [name]", "[name]"] }
+            ]
+        }
+    };
+    
+    const dialogueSelect = document.getElementById('dialogue-select');
+    const startDialogueBtn = document.getElementById('start-dialogue');
+    const dialoguePractice = document.getElementById('dialogue-practice');
+    const dialogueQuestion = document.getElementById('dialogue-question');
+    const dialogueAnswer = document.getElementById('dialogue-answer');
+    const checkDialogueBtn = document.getElementById('check-dialogue');
+    const dialogueFeedback = document.getElementById('dialogue-feedback');
+    const nextDialogueBtn = document.getElementById('next-dialogue');
+    const dialogueProgress = document.getElementById('dialogue-progress');
+    const dialogueHint = document.getElementById('dialogue-hint');
+    const dialogueComplete = document.getElementById('dialogue-complete');
+    const fullDialogue = document.getElementById('full-dialogue');
+    const restartDialogueBtn = document.getElementById('restart-dialogue');
+    
+    let currentDialogue = null;
+    let currentLine = 0;
+    let userResponses = [];
+    
+    startDialogueBtn.addEventListener('click', () => {
+        currentDialogue = dialogues[dialogueSelect.value];
+        currentLine = 0;
+        userResponses = [];
+        
+        dialoguePractice.classList.remove('hidden');
+        dialogueComplete.classList.add('hidden');
+        loadDialogueLine();
+    });
+    
+    function loadDialogueLine() {
+        const line = currentDialogue.lines[currentLine];
+        
+        if (line.speaker === "You") {
+            dialogueQuestion.textContent = "";
+            dialogueAnswer.value = "";
+            dialogueAnswer.placeholder = "Your response...";
+            dialogueAnswer.focus();
+            dialogueHint.classList.add('hidden');
+            dialogueFeedback.classList.add('hidden');
+            
+            // Mostrar mensaje anterior si existe
+            if (currentLine > 0) {
+                const prevLine = currentDialogue.lines[currentLine - 1];
+                dialogueQuestion.textContent = prevLine.message;
+            }
+        } else {
+            dialogueQuestion.textContent = line.message;
+            dialogueAnswer.value = "";
+            dialogueAnswer.placeholder = "Press 'Continue'";
+            dialogueAnswer.disabled = true;
+            checkDialogueBtn.disabled = true;
+            dialogueHint.classList.add('hidden');
+            
+            if (currentLine < currentDialogue.lines.length - 1) {
+                nextDialogueBtn.classList.remove('hidden');
+            } else {
+                // Diálogo completo
+                showCompleteDialogue();
+            }
+        }
+        
+        dialogueProgress.textContent = `Line ${currentLine + 1}/${currentDialogue.lines.length}`;
+    }
+    
+    checkDialogueBtn.addEventListener('click', () => {
+        const line = currentDialogue.lines[currentLine];
+        const userAnswer = dialogueAnswer.value.trim().toLowerCase();
+        const correctAnswer = line.response.toLowerCase();
+        
+        // Guardar respuesta del usuario
+        userResponses.push({
+            line: line,
+            userAnswer: userAnswer,
+            isCorrect: userAnswer.includes(correctAnswer.replace('[your name]', '').replace('[name]', '').trim()) || 
+                      line.hints.some(hint => userAnswer.includes(hint.replace('[your name]', '').replace('[name]', '').trim()))
+        });
+        
+        // Mostrar feedback
+        if (userResponses[currentLine].isCorrect) {
+            dialogueFeedback.querySelector('p').textContent = "Good answer!";
+            dialogueFeedback.querySelector('p').className = "font-medium text-[#2e7d32]";
+        } else {
+            dialogueFeedback.querySelector('p').textContent = "Almost! Try again.";
+            dialogueFeedback.querySelector('p').className = "font-medium text-[#c62828]";
+        }
+        
+        // Mostrar sugerencias
+        const hintsText = line.hints.map(hint => `"${hint}"`).join(' or ');
+        document.getElementById('feedback-text').textContent = `You could say: ${hintsText}`;
+        
+        dialogueFeedback.classList.remove('hidden');
+        nextDialogueBtn.classList.remove('hidden');
+    });
+    
+    dialogueHint.addEventListener('click', () => {
+        const line = currentDialogue.lines[currentLine];
+        const hint = line.hints[0].replace('[your name]', 'your name').replace('[name]', 'your name');
+        dialogueAnswer.value = hint;
+        dialogueAnswer.focus();
+    });
+    
+    nextDialogueBtn.addEventListener('click', () => {
+        currentLine++;
+        if (currentLine < currentDialogue.lines.length) {
+            loadDialogueLine();
+        } else {
+            showCompleteDialogue();
+        }
+    });
+    
+    function showCompleteDialogue() {
+        dialoguePractice.classList.add('hidden');
+        dialogueComplete.classList.remove('hidden');
+        
+        fullDialogue.innerHTML = '';
+        currentDialogue.lines.forEach((line, index) => {
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'dialogue-line';
+            
+            const speakerDiv = document.createElement('div');
+            speakerDiv.className = 'speaker';
+            speakerDiv.textContent = line.speaker;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            
+            const messageP = document.createElement('p');
+            messageP.textContent = line.speaker === "You" ? 
+                (userResponses[index]?.userAnswer || line.response) : 
+                line.message;
+            
+            messageDiv.appendChild(messageP);
+            lineDiv.appendChild(speakerDiv);
+            lineDiv.appendChild(messageDiv);
+            fullDialogue.appendChild(lineDiv);
+        });
+    }
+    
+    restartDialogueBtn.addEventListener('click', () => {
+        currentLine = 0;
+        userResponses = [];
+        dialogueComplete.classList.add('hidden');
+        dialoguePractice.classList.remove('hidden');
+        loadDialogueLine();
+    });
     
     // Inicializar juegos
-    initMemoryGame();
-    initAgeGame();
-    
-    // Configurar eventos
-    document.getElementById('next-age')?.addEventListener('click', generateAgeQuestion);
-    document.getElementById('reset-memory')?.addEventListener('click', initMemoryGame);
-    document.getElementById('random-age')?.addEventListener('click', generateRandomAge);
+    initSentenceGame();
+    loadQuestion(0);
 });
-
-// [Todas las demás funciones del juego]
-
-
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   document.addEventListener('DOMContentLoaded', function() {
-        // Animaciones al cargar
-        const elementsToAnimate = document.querySelectorAll('#leccion-a2 .animate-fadeIn, #leccion-a2 .animate-slideInLeft, #leccion-a2 .animate-slideInRight');
-        elementsToAnimate.forEach((el, index) => {
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0) translateX(0)';
-            }, 100 * (index + 1));
-        });
-
-        // Mostrar vocabulario
-        const classroomObjectsSpan = document.getElementById('classroom-objects');
-        const dailyObjectsSpan = document.getElementById('daily-objects');
-
-        if (classroomObjectsSpan) {
-            classroomObjectsSpan.addEventListener('click', function() {
-                alert('Cosas en un salón de clases: Pen (bolígrafo), pencil (lápiz), notebook (cuaderno), chair (silla), table (mesa)');
-            });
-        }
-
-        if (dailyObjectsSpan) {
-            dailyObjectsSpan.addEventListener('click', function() {
-                alert('Objetos cotidianos: Phone (teléfono), bag (bolso), key (llave), cup (taza)');
-            });
-        }
-
-        // Verificar ejercicio de artículos
-        const checkArticleButtons = document.querySelectorAll('.check-article');
-        checkArticleButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const userAnswer = this.previousElementSibling.textContent.trim().split(' ')[0].toLowerCase();
-                const correctAnswer = this.dataset.answer;
-                const resultSpan = this.nextElementSibling;
-                const incorrectSpan = this.nextElementSibling.nextElementSibling;
-
-                if (userAnswer === correctAnswer) {
-                    resultSpan.classList.remove('hidden');
-                    incorrectSpan.classList.add('hidden');
-                } else {
-                    resultSpan.classList.add('hidden');
-                    incorrectSpan.classList.remove('hidden');
-                }
-            });
-        });
-
-        // Verificar ejercicio de plurales
-        const checkPluralButtons = document.querySelectorAll('.check-plural');
-        checkPluralButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const inputField = this.previousElementSibling;
-                const userAnswer = inputField.value.trim().toLowerCase();
-                const correctAnswer = this.dataset.answer;
-                const correctSpan = this.nextElementSibling;
-                const incorrectSpan = this.nextElementSibling.nextElementSibling;
-
-                if (userAnswer === correctAnswer) {
-                    correctSpan.classList.remove('hidden');
-                    incorrectSpan.classList.add('hidden');
-                } else {
-                    correctSpan.classList.add('hidden');
-                    incorrectSpan.classList.remove('hidden');
-                }
-            });
-        });
-
-        // Simulación de práctica de "What is this/that?"
-        const practiceWhatButton = document.getElementById('practice-what');
-        if (practiceWhatButton) {
-            practiceWhatButton.addEventListener('click', function() {
-                alert('¡Comencemos a practicar! (Imagina que ves diferentes objetos y respondes)');
-                // Aquí se podría implementar una interfaz interactiva con imágenes de objetos
-            });
-        }
-
-        // Simulación de escuchar pronunciación
-        const listenDifferenceButton = document.querySelector('#leccion-a2 .bg-white:nth-child(2) button');
-        if (listenDifferenceButton) {
-            listenDifferenceButton.addEventListener('click', function() {
-                alert('Reproduciendo la diferencia entre la pronunciación de "pen" y "pan"...');
-                // Aquí se integraría la lógica para reproducir audio
-            });
-        }
-    });
